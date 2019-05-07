@@ -1,0 +1,20 @@
+#!/usr/local/node/bin/node
+
+var exec = require('child_process').execSync
+
+const cmd = "ykman oath code " + process.argv[2]
+const buf = exec(cmd)
+const stdout = buf.toString()
+const arr = stdout.split("\n")
+if (arr.length > 0) {
+  const line = arr[0]
+  if (line.length > 0) {
+    const end = line.length - 6
+    const what = line.substr(0, end).trim()
+    const code = line.substr(end).trim()
+    console.log("Matched: " + what)
+    console.log("Code: " + code)
+    const cmd2 = 'echo ' + code + ' | xsel -ib'
+    exec(cmd2)
+  }
+}
