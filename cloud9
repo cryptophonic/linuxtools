@@ -1,0 +1,4 @@
+#!/bin/sh
+
+/home/mjackson/cloud9/c9sdk/server.js -w /home/mjackson -p 2000 -l 0.0.0.0 -a :
+
