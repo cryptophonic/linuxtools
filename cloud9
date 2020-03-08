@@ -1,4 +1,10 @@
 #!/bin/sh
 
-/home/mjackson/cloud9/c9sdk/server.js -w /home/mjackson -p 2000 -l 0.0.0.0 -a :
+if pidof -o %PPID -x "cloud9">/dev/null; then
+    echo "Cloud9 already running"
+    exit -1
+else
+    /home/mjackson/.nvm/versions/node/v8.17.0/bin/node /home/mjackson/cloud9/c9sdk/server.js -w /home/mjackson -p 2000 -l localhost -a : 
+    exit 0
+fi
 
