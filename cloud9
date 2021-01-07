@@ -1,10 +1,21 @@
 #!/bin/sh
 
+if [ -z "$1" ]; then
+    echo "No password supplied"
+    AUTH=
+    HOST=127.0.0.1
+else
+    AUTH="--auth mark:$1"
+    HOST=0.0.0.0
+fi
+
+echo "Using HOST=$HOST"
+
 if pidof -o %PPID -x "cloud9">/dev/null; then
     echo "Cloud9 already running"
     exit -1
 else
-    /home/mjackson/.nvm/versions/node/v8.17.0/bin/node /home/mjackson/cloud9/c9sdk/server.js -w /home/mjackson -p 2000 -l localhost -a : 
+    /home/mjackson/.nvm/versions/node/v8.17.0/bin/node /home/mjackson/cloud9/c9sdk/server.js $AUTH -w /home/mjackson -p 2000 -l $HOST
     exit 0
 fi
 
