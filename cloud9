@@ -1,11 +1,12 @@
 #!/bin/sh
 
-if [ -z "$1" ]; then
+if [ -z "$CLOUD9" ]; then
     echo "No password supplied"
     AUTH=
     HOST=127.0.0.1
 else
-    AUTH="--auth mark:$1"
+    echo "Password found"
+    AUTH="--auth mark:$CLOUD9"
     HOST=0.0.0.0
 fi
 
