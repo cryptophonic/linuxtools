@@ -1,0 +1,3 @@
+[submodule "udev-rules"]
+	path = udev-rules
+	url = https://github.com/LedgerHQ/udev-rules.git
