@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# This script changes all commits in a repository to the new user
+# and email specified in NEW_NAME and NEW_EMAIL.  The commit date
+# is kept the same.
+
+git filter-branch --env-filter '
+NEW_NAME="Your Name"
+NEW_EMAIL="your-email@example.com"
+
+GIT_COMMITTER_NAME="$NEW_NAME"
+GIT_COMMITTER_EMAIL="$NEW_EMAIL"
+GIT_AUTHOR_NAME="$NEW_NAME"
+GIT_AUTHOR_EMAIL="$NEW_EMAIL"
+
+export GIT_COMMITTER_NAME
+export GIT_COMMITTER_EMAIL
+export GIT_AUTHOR_NAME
+export GIT_AUTHOR_EMAIL
+' --tag-name-filter cat -- --all
+
